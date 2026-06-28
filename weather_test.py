@@ -1,12 +1,14 @@
-# api key: 5b77b04104e1431b41aa99a44768bee8
-
 import requests
 import os
 import time
 from win11toast import toast
 
+
+with open('weather_api.txt', 'r') as file:
+    api = file.read()
+    
 url = 'https://api.openweathermap.org/data/2.5/weather'
-parameters = {"lat": 38.405963, 'lon': -78.713965, 'appid': '5b77b04104e1431b41aa99a44768bee8', 'units': 'metric'}
+parameters = {"lat": 38.405963, 'lon': -78.713965, 'appid': api, 'units': 'metric'}
 
 response = requests.get(url, params = parameters, timeout=10)
 data = response.json()
@@ -25,4 +27,3 @@ while True:
         description = new_description
         
     time.sleep(60)
-    
